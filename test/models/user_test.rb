@@ -5,8 +5,8 @@ class UserTest < ActiveSupport::TestCase
   def setup
     @user = User.new(name: 'Steph', 
                      email: 'steph@gmail.com',
-                     password: 'passw0rd!',
-                     password_confirmation: 'passw0rd!')
+                     password: 'foobar',
+                     password_confirmation: 'foobar')
   end
   
   test "should be valid" do
@@ -25,6 +25,17 @@ class UserTest < ActiveSupport::TestCase
   
   test 'requires the user name to be more than 3 chars' do
     @user.name = '12'
+    assert_not @user.valid?
+  end
+  
+  test "names should be unique" do
+    duplicate_user = @user.dup
+    @user.save
+    assert_not duplicate_user.valid?
+  end
+  
+  test "password should have a minimum length of 6 chars" do
+    @user.password = @user.password_confirmation = "a" * 5
     assert_not @user.valid?
   end
 end
