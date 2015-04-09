@@ -1,0 +1,12 @@
+/home/action/.parts/packages/ruby2.1/2.1.1/bin/ruby extconf.rb 
+creating Makefile
+
+make "DESTDIR=" clean
+
+make "DESTDIR="
+compiling debug_inspector.c
+linking shared-object debug_inspector.so
+
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 debug_inspector.so ./.gem.20150403-574-wo7tc5
+installing default debug_inspector libraries
